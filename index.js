@@ -12,3 +12,7 @@ app.get('/', function (req, res) {
 app.get('/user', (req, res) => {
   console.log('hello user');
 });
+
+app.get('/user/:id', (req, res) => {
+  console.log('hello id');
+});
