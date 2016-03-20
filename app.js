@@ -6,6 +6,7 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var router = require('./routes/main');
 
 // Load Routes
 var timer = require('./routes/timer');
@@ -27,8 +28,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // 配置路由
-app.use('/', timer);
-app.use('/users', users);
+app.use(router);
 
 // 404错误统一处理
 app.use((req, res, next) => {
@@ -37,7 +37,7 @@ app.use((req, res, next) => {
     next(err);
 });
 // 开发环境，500错误接收，输出堆栈追踪信息
-if (app.get('env') == 'development') {
+if (app.get('env') === 'development') {
     app.use((err, req, res, next) => {
         res.status(err.status || 500);
         /*

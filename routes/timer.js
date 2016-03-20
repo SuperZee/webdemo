@@ -1,10 +1,10 @@
-var express = require('express');
-var router = express.Router();
+function _get(req, res) {
+  res.render('index');
+}
 
-// POST
-router.get('/timer', (req, res, next) => {
-    //console.log('timer');
-    res.render('index', {title: ' TIMER', name: 'SuperZee'});
-});
+function _post(req, res) {
+  res.end('post to timer');
+}
 
-module.exports = router;
+module.exports.get = _get;
+module.exports.post = _post;
