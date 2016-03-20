@@ -1,0 +1,31 @@
+/**
+ * Module dependencies
+ */
+var app = require('../index.js');
+var http = require('http');
+
+/**
+ * Port
+ * find system path $PORT = ?
+ * or default 3000
+ */
+var port = initPort(process.env.PORT || '3000');
+
+
+/**
+ * Get init port method
+ * @param val
+ * @returns {*}
+ */
+function initPort(val) {
+    var port = parseInt(val, 10);
+    // if port can be parsed isNaN return true
+    if (isNaN(port)) {
+        return val;
+    }
+    if (port >= 0) {
+        // port normal number
+        return port;
+    }
+    return false;
+}
