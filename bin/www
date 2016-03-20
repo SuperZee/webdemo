@@ -2,6 +2,7 @@
  * Module dependencies
  */
 var app = require('../app');
+var debug = require('debug')('webdemo:server');
 var http = require('http');
 
 /**
@@ -10,6 +11,28 @@ var http = require('http');
  * or default 3000
  */
 var port = initPort(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * 创建HTTP服务实例
+ */
+var server = http.createServer(app);
+
+/**
+ * 启动网络服务监听端口
+ */
+server.listen(port);
+server.on('error', function () {
+    //...
+    throw  error;
+});
+server.on('listening', function () {
+    var addr = server.address();
+    var bind = typeof addr === 'string'
+        ? 'pipe ' + addr
+        : 'port ' + addr.port;
+    console.log('\033[92mListening on \033[32m' + bind);
+});
 
 /**
  * Get init port method

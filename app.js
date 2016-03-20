@@ -27,8 +27,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // 配置路由
-app.use('/', routes);
-app.use('/users/', users);
+app.use('/', timer);
+app.use('/users', users);
 
 // 404错误统一处理
 app.use((req, res, next) => {
