@@ -1,7 +1,7 @@
 /**
  * Module dependencies
  */
-var app = require('../index.js');
+var app = require('../app');
 var http = require('http');
 
 /**
@@ -10,7 +10,6 @@ var http = require('http');
  * or default 3000
  */
 var port = initPort(process.env.PORT || '3000');
-
 
 /**
  * Get init port method
