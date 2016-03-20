@@ -39,7 +39,13 @@ app.use((req, res, next) => {
 // 开发环境，500错误接收，输出堆栈追踪信息
 if (app.get('env') == 'development') {
     app.use((err, req, res, next) => {
-        res, status(err.status || 500);
+        res.status(err.status || 500);
+        /*
+         * app.routes 对象存储了所有的被HTTP verb定义路由。
+         * 这个对象可以用在一些内部功能上，比如Express不仅用它来做路由分发，
+         * 同时在没有app.options()定义的情况下用它来处理默认的OPTIONS行为。
+          * 你的应用程序或者框架也可以很轻松的通过在这个对象里移除路由来达到删除路由的目的。
+         */
         res.render('error', {
             message: err.message,
             error: err
@@ -57,22 +63,22 @@ app.use((err, req, res, next) => {
 });
 
 module.exports = app;
-/*
+/*‘
  这个文件不再处理路由信息，处理http请求的事情交给routes/目录下
  对应的路由处理
-app.listen(3000, () => {
-    console.log('server start');
-});
+ app.listen(3000, () => {
+ console.log('server start');
+ });
 
-app.get('/', function (req, res) {
-    res.end('Hello Node');
-});
+ app.get('/', function (req, res) {
+ res.end('Hello Node');
+ });
 
-app.get('/user', (req, res) => {
-    console.log('hello user');
-});
+ app.get('/user', (req, res) => {
+ console.log('hello user');
+ });
 
-app.get('/user/:id', (req, res) => {
-    console.log('hello id');
-});
-*/
+ app.get('/user/:id', (req, res) => {
+ console.log('hello id');
+ });
+ */
