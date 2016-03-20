@@ -31,7 +31,7 @@ server.on('listening', function () {
     var bind = typeof addr === 'string'
         ? 'pipe ' + addr
         : 'port ' + addr.port;
-    console.log('\033[92mListening on \033[32m' + bind);
+    console.log('\033[92mListening on \033[39m' + bind);
 });
 
 /**
